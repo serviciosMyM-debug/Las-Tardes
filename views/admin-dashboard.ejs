@@ -1,15 +1,15 @@
-<%- include('partials/head', { title: 'Panel administrador · Las Tardes', toast, toastType }) %>
+<%- include('partials/head', { title: 'Panel administrador · Tapiceria Las Tardes', toast, toastType }) %>
 <link rel="stylesheet" href="/css/admin.css" />
 
 <div class="admin-layout">
   <aside class="admin-sidebar">
     <div class="brand">
-      <span class="brand-mark">LT</span>
-      <div>
-        <strong>Las Tardes</strong>
-        <small>Admin</small>
-      </div>
-    </div>
+  <img src="/images/logo.png" alt="Logo <%= settings.business_name %>" class="brand-logo" />
+  <div class="brand-text">
+    <strong>Tapiceria <%= settings.business_name %></strong>
+    <small>Panel administrador</small>
+  </div>
+</div>
     <nav class="admin-nav">
       <a href="#dashboard">Dashboard</a>
       <a href="#turnos">Turnos</a>

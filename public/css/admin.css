@@ -70,4 +70,6 @@
   .admin-layout { grid-template-columns: 1fr; }
   .admin-sidebar { position: static; height: auto; }
   .two-columns, .availability-row, .editor-row, .form-two-cols, .compact-form { grid-template-columns: 1fr; }
+
+  
 }

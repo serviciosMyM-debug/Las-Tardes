@@ -3,15 +3,26 @@ const db = require('../db');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.render('index', {
-    settings: db.getBusinessSettings(),
-    services: db.listServices(),
-    pricing: db.listPricing(),
-    reviews: db.listReviews(),
-    toast: req.query.toast || '',
-    toastType: req.query.type || 'success'
-  });
+router.get('/', async (req, res, next) => {
+  try {
+    const [settings, services, pricing, reviews] = await Promise.all([
+      db.getBusinessSettings(),
+      db.listServices(),
+      db.listPricing(),
+      db.listReviews()
+    ]);
+
+    res.render('index', {
+      settings,
+      services,
+      pricing,
+      reviews,
+      toast: req.query.toast || '',
+      toastType: req.query.type || 'success'
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = router;

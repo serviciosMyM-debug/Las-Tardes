@@ -7,17 +7,25 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "keywords": ["tapiceria", "nodejs", "express", "json", "turnos"],
+  "keywords": [
+    "tapiceria",
+    "nodejs",
+    "express",
+    "json",
+    "turnos"
+  ],
   "author": "OpenAI",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dayjs": "^1.11.13",
+    "dotenv": "^17.3.1",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "helmet": "^8.0.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pg": "^8.20.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
