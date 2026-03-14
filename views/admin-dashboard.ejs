@@ -1,0 +1,251 @@
+<%- include('partials/head', { title: 'Panel administrador · Las Tardes', toast, toastType }) %>
+<link rel="stylesheet" href="/css/admin.css" />
+
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <div class="brand">
+      <span class="brand-mark">LT</span>
+      <div>
+        <strong>Las Tardes</strong>
+        <small>Admin</small>
+      </div>
+    </div>
+    <nav class="admin-nav">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#turnos">Turnos</a>
+      <a href="#disponibilidad">Disponibilidad</a>
+      <a href="#resenas">Reseñas</a>
+      <a href="#precios">Presupuestos</a>
+      <a href="#contenido">Contenido</a>
+    </nav>
+    <form method="post" action="/admin/logout">
+      <button class="btn btn-ghost btn-block" type="submit">Cerrar sesión</button>
+    </form>
+  </aside>
+
+  <main class="admin-main">
+    <section id="dashboard" class="admin-section">
+      <div class="admin-header-row">
+        <div>
+          <span class="section-tag">Resumen</span>
+          <h1>Hola, <%= admin.username %></h1>
+          <p>Gestioná el funcionamiento de la web y del calendario en tiempo real.</p>
+        </div>
+      </div>
+      <div class="summary-grid">
+        <article class="summary-card"><strong><%= summary.totalAppointments %></strong><span>Turnos totales</span></article>
+        <article class="summary-card"><strong><%= summary.pendingAppointments %></strong><span>Turnos pendientes</span></article>
+        <article class="summary-card"><strong><%= summary.totalReviews %></strong><span>Reseñas cargadas</span></article>
+        <article class="summary-card"><strong><%= summary.totalPricing %></strong><span>Items en tabla</span></article>
+        <article class="summary-card"><strong><%= summary.occupiedSlots %></strong><span>Horarios ocupados</span></article>
+      </div>
+      <div class="panel-card">
+        <h3>Próximos turnos</h3>
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Fecha</th><th>Hora</th><th>Cliente</th><th>Estado</th></tr></thead>
+            <tbody>
+              <% if (upcomingAppointments.length === 0) { %>
+                <tr><td colspan="4">No hay próximos turnos.</td></tr>
+              <% } %>
+              <% upcomingAppointments.forEach(item => { %>
+                <tr>
+                  <td><%= item.date %></td>
+                  <td><%= item.time %></td>
+                  <td><%= item.name %></td>
+                  <td><span class="status-pill status-<%= item.status %>"><%= item.status %></span></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="turnos" class="admin-section">
+      <div class="panel-card">
+        <h2>Gestión de turnos</h2>
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Cliente</th><th>Teléfono</th><th>Fecha</th><th>Hora</th><th>Observación</th><th>Estado</th><th>Acciones</th></tr>
+            </thead>
+            <tbody>
+              <% if (appointments.length === 0) { %>
+                <tr><td colspan="7">Aún no hay turnos registrados.</td></tr>
+              <% } %>
+              <% appointments.forEach(item => { %>
+                <tr>
+                  <td><strong><%= item.name %></strong></td>
+                  <td><%= item.phone %></td>
+                  <td><%= item.date %></td>
+                  <td><%= item.time %></td>
+                  <td><%= item.notes || '—' %></td>
+                  <td>
+                    <form method="post" action="/admin/appointments/<%= item.id %>/status" class="inline-form">
+                      <select name="status">
+                        <option value="pendiente" <%= item.status === 'pendiente' ? 'selected' : '' %>>Pendiente</option>
+                        <option value="confirmado" <%= item.status === 'confirmado' ? 'selected' : '' %>>Confirmado</option>
+                        <option value="completado" <%= item.status === 'completado' ? 'selected' : '' %>>Completado</option>
+                        <option value="cancelado" <%= item.status === 'cancelado' ? 'selected' : '' %>>Cancelado</option>
+                      </select>
+                      <button class="btn btn-mini" type="submit">Guardar</button>
+                    </form>
+                  </td>
+                  <td>
+                    <form method="post" action="/admin/appointments/<%= item.id %>/delete">
+                      <button class="btn btn-mini btn-danger" type="submit">Eliminar</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="disponibilidad" class="admin-section two-columns">
+      <div class="panel-card">
+        <h2>Disponibilidad semanal</h2>
+        <form method="post" action="/admin/availability/update" class="stack-form">
+          <% const weekdays = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']; %>
+          <% availability.forEach(day => { %>
+            <div class="availability-row">
+              <div>
+                <strong><%= weekdays[day.weekday] %></strong>
+              </div>
+              <label class="checkbox-line">
+                <input type="checkbox" name="enabled_<%= day.weekday %>" <%= day.enabled ? 'checked' : '' %> />
+                Habilitado
+              </label>
+              <input type="text" name="slots_<%= day.weekday %>" value="<%= day.parsedSlots %>" placeholder="09:00, 10:00, 11:00" />
+            </div>
+          <% }) %>
+          <button class="btn btn-primary" type="submit">Guardar disponibilidad</button>
+        </form>
+      </div>
+
+      <div class="panel-card">
+        <h2>Bloquear fechas especiales</h2>
+        <form method="post" action="/admin/blocked-dates" class="stack-form compact-form">
+          <input type="date" name="date" required />
+          <input type="text" name="reason" placeholder="Motivo opcional" />
+          <button class="btn btn-secondary" type="submit">Bloquear fecha</button>
+        </form>
+        <div class="list-stack">
+          <% if (blockedDates.length === 0) { %>
+            <p class="muted">No hay fechas bloqueadas.</p>
+          <% } %>
+          <% blockedDates.forEach(item => { %>
+            <div class="list-item">
+              <div>
+                <strong><%= item.date %></strong>
+                <small><%= item.reason || 'Sin motivo' %></small>
+              </div>
+              <form method="post" action="/admin/blocked-dates/<%= item.id %>/delete">
+                <button class="btn btn-mini btn-danger" type="submit">Quitar</button>
+              </form>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section id="resenas" class="admin-section two-columns">
+      <div class="panel-card">
+        <h2>Nueva reseña</h2>
+        <form method="post" action="/admin/reviews" class="stack-form">
+          <input type="text" name="client_name" placeholder="Nombre del cliente" required />
+          <textarea name="comment" rows="4" placeholder="Comentario" required></textarea>
+          <select name="rating" required>
+            <option value="5">5 estrellas</option>
+            <option value="4">4 estrellas</option>
+            <option value="3">3 estrellas</option>
+            <option value="2">2 estrellas</option>
+            <option value="1">1 estrella</option>
+          </select>
+          <button class="btn btn-primary" type="submit">Agregar reseña</button>
+        </form>
+      </div>
+      <div class="panel-card">
+        <h2>Reseñas cargadas</h2>
+        <div class="list-stack">
+          <% reviews.forEach(item => { %>
+            <form method="post" action="/admin/reviews/<%= item.id %>/update" class="list-editor">
+              <input type="text" name="client_name" value="<%= item.client_name %>" required />
+              <textarea name="comment" rows="3" required><%= item.comment %></textarea>
+              <div class="editor-row">
+                <select name="rating">
+                  <% for(let star = 5; star >= 1; star--) { %>
+                    <option value="<%= star %>" <%= item.rating === star ? 'selected' : '' %>><%= star %> estrella<%= star > 1 ? 's' : '' %></option>
+                  <% } %>
+                </select>
+                <div class="editor-actions">
+                  <button class="btn btn-mini" type="submit">Guardar</button>
+                  <button class="btn btn-mini btn-danger" formaction="/admin/reviews/<%= item.id %>/delete" formmethod="post" type="submit">Eliminar</button>
+                </div>
+              </div>
+            </form>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section id="precios" class="admin-section two-columns">
+      <div class="panel-card">
+        <h2>Agregar servicio / presupuesto</h2>
+        <form method="post" action="/admin/pricing" class="stack-form">
+          <input type="text" name="name" placeholder="Nombre" required />
+          <input type="text" name="description" placeholder="Descripción" required />
+          <input type="text" name="price" placeholder="$120.000 o A consultar" required />
+          <input type="number" name="sort_order" placeholder="Orden visual" min="0" />
+          <button class="btn btn-primary" type="submit">Agregar</button>
+        </form>
+      </div>
+      <div class="panel-card">
+        <h2>Tabla editable</h2>
+        <div class="list-stack">
+          <% pricing.forEach(item => { %>
+            <form method="post" action="/admin/pricing/<%= item.id %>/update" class="list-editor">
+              <input type="text" name="name" value="<%= item.name %>" required />
+              <input type="text" name="description" value="<%= item.description %>" required />
+              <div class="editor-row">
+                <input type="text" name="price" value="<%= item.price %>" required />
+                <input type="number" name="sort_order" value="<%= item.sort_order %>" min="0" />
+              </div>
+              <div class="editor-actions">
+                <button class="btn btn-mini" type="submit">Guardar</button>
+                <button class="btn btn-mini btn-danger" formaction="/admin/pricing/<%= item.id %>/delete" formmethod="post" type="submit">Eliminar</button>
+              </div>
+            </form>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <section id="contenido" class="admin-section">
+      <div class="panel-card">
+        <h2>Contenido general del sitio</h2>
+        <form method="post" action="/admin/settings" class="stack-form">
+          <div class="form-two-cols">
+            <input type="text" name="business_name" value="<%= settings.business_name %>" required />
+            <input type="text" name="phone" value="<%= settings.phone %>" required />
+          </div>
+          <input type="text" name="address" value="<%= settings.address %>" required />
+          <input type="text" name="hours" value="<%= settings.hours %>" required />
+          <input type="text" name="hero_title" value="<%= settings.hero_title %>" required />
+          <textarea name="hero_subtitle" rows="3" required><%= settings.hero_subtitle %></textarea>
+          <textarea name="about_text" rows="4" required><%= settings.about_text %></textarea>
+          <textarea name="importance_text" rows="4" required><%= settings.importance_text %></textarea>
+          <button class="btn btn-primary" type="submit">Guardar contenido</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="toast-root" data-toast="<%= toast %>" data-type="<%= toastType %>"></div>
+<script src="/js/toast.js"></script>
+</body>
+</html>

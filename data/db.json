@@ -1,0 +1,222 @@
+{
+  "counters": {
+    "admin": 1,
+    "service": 6,
+    "pricing": 5,
+    "review": 4,
+    "blockedDate": 0,
+    "appointment": 2
+  },
+  "admins": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password_hash": "$2a$10$bKqV0efeMl8w3m0CUHEceearXEfrucEGg0KV2A0a4R56ZPwiVe/Ei",
+      "created_at": "2026-03-14T13:00:56.929Z"
+    }
+  ],
+  "businessSettings": {
+    "business_name": "Tapiceria Las Tardes",
+    "phone": "3413538035",
+    "address": "Las Tardes Norte 2524 - Roldán",
+    "hours": "Lunes a Viernes de 09:00 a 18:00 · Sábados de 09:00 a 13:00",
+    "hero_title": "Tapicería artesanal con terminaciones premium",
+    "hero_subtitle": "Restauramos, renovamos y realzamos muebles con criterio estético, materiales de calidad y atención personalizada.",
+    "about_text": "En Las Tardes trabajamos cada pieza como un proyecto único. Combinamos oficio, detalle y asesoramiento para transformar sillones, sillas, respaldos y muebles en piezas renovadas, cómodas y duraderas.",
+    "importance_text": "Una buena tapicería no solo mejora la estética: prolonga la vida útil del mueble, suma confort, valoriza los ambientes y permite personalizar cada espacio según el estilo y la necesidad del cliente. Invertir en restauración y retapizado es elegir calidad, identidad y durabilidad."
+  },
+  "services": [
+    {
+      "id": 1,
+      "title": "Tapizado de sillones",
+      "description": "Renovación integral de sillones individuales, dobles y de gran porte.",
+      "icon": "🛋️"
+    },
+    {
+      "id": 2,
+      "title": "Restauración de muebles",
+      "description": "Recuperación estética y funcional de piezas con valor sentimental o decorativo.",
+      "icon": "🪑"
+    },
+    {
+      "id": 3,
+      "title": "Retapizado de sillas",
+      "description": "Cambio de telas, espuma y terminaciones para uso doméstico o comercial.",
+      "icon": "✨"
+    },
+    {
+      "id": 4,
+      "title": "Cabeceras personalizadas",
+      "description": "Diseños sobrios, modernos o clásicos para dormitorios con presencia.",
+      "icon": "🛏️"
+    },
+    {
+      "id": 5,
+      "title": "Cambio de espumas y costuras",
+      "description": "Mejora del confort, firmeza y terminación de cada trabajo.",
+      "icon": "🧵"
+    },
+    {
+      "id": 6,
+      "title": "Trabajos a medida",
+      "description": "Soluciones personalizadas según estilo, necesidad, tela y presupuesto.",
+      "icon": "📐"
+    }
+  ],
+  "pricing": [
+    {
+      "id": 1,
+      "name": "Tapizado de silla",
+      "description": "Asiento y respaldo estándar con terminación prolija.",
+      "price": "$45.000",
+      "sort_order": 3
+    },
+    {
+      "id": 2,
+      "name": "Restauración de sillón individual",
+      "description": "Estructura, tapizado y detalles generales.",
+      "price": "$180.000",
+      "sort_order": 2
+    },
+    {
+      "id": 3,
+      "name": "Limpieza de Tapizados",
+      "description": "Limpieza profunda eliminación de manchas, ácaros y ",
+      "price": "$30.000 - $50.000",
+      "sort_order": 1
+    },
+    {
+      "id": 4,
+      "name": "Tapizado de respaldo / cabecera",
+      "description": "Trabajo a medida con variedad de telas.",
+      "price": "$95.000",
+      "sort_order": 4
+    },
+    {
+      "id": 5,
+      "name": "Trabajo personalizado",
+      "description": "Cotización según complejidad, materiales y dimensiones.",
+      "price": "A consultar",
+      "sort_order": 5
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "client_name": "María G.",
+      "comment": "Excelente terminación y muy buena atención. Mi sillón quedó como nuevo.",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "client_name": "Lucas R.",
+      "comment": "Cumplieron con el tiempo acordado y el trabajo quedó impecable.",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "client_name": "Ana P.",
+      "comment": "Me asesoraron con la tela y el resultado fue mejor de lo que esperaba.",
+      "rating": 4
+    }
+  ],
+  "availability": [
+    {
+      "weekday": 0,
+      "enabled": false,
+      "slots": []
+    },
+    {
+      "weekday": 1,
+      "enabled": true,
+      "slots": [
+        "09:00",
+        "10:00",
+        "11:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ]
+    },
+    {
+      "weekday": 2,
+      "enabled": true,
+      "slots": [
+        "09:00",
+        "10:00",
+        "11:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ]
+    },
+    {
+      "weekday": 3,
+      "enabled": true,
+      "slots": [
+        "09:00",
+        "10:00",
+        "11:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ]
+    },
+    {
+      "weekday": 4,
+      "enabled": true,
+      "slots": [
+        "09:00",
+        "10:00",
+        "11:00",
+        "15:00",
+        "16:00",
+        "17:00"
+      ]
+    },
+    {
+      "weekday": 5,
+      "enabled": true,
+      "slots": [
+        "09:00",
+        "10:00",
+        "11:00",
+        "15:00",
+        "16:00"
+      ]
+    },
+    {
+      "weekday": 6,
+      "enabled": true,
+      "slots": [
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00"
+      ]
+    }
+  ],
+  "blockedDates": [],
+  "appointments": [
+    {
+      "id": 1,
+      "status": "pendiente",
+      "created_at": "2026-03-14T13:01:10.245Z",
+      "name": "Prueba",
+      "phone": "3410000000",
+      "date": "2026-03-16",
+      "time": "09:00",
+      "notes": "Sillón 2 cuerpos"
+    },
+    {
+      "id": 2,
+      "status": "pendiente",
+      "created_at": "2026-03-14T13:18:50.729Z",
+      "name": "Matias Miranda",
+      "phone": "3412298665",
+      "date": "2026-03-16",
+      "time": "15:00",
+      "notes": "tapiceria de sillon"
+    }
+  ]
+}

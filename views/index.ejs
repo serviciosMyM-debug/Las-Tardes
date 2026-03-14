@@ -1,0 +1,274 @@
+<%- include('partials/head', { title: `${settings.business_name} · Tapicería profesional`, toast, toastType }) %>
+
+<a class="floating-whatsapp" href="https://wa.me/543413538035" target="_blank" rel="noreferrer" aria-label="Abrir WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true" class="floating-whatsapp-icon">
+    <path d="M19.11 17.41c-.29-.15-1.7-.84-1.96-.93-.26-.1-.45-.15-.64.15-.19.29-.74.93-.91 1.12-.17.2-.33.22-.62.08-.29-.15-1.22-.45-2.32-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.1-.2.05-.37-.02-.52-.08-.15-.64-1.54-.88-2.12-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.48.07-.74.37-.26.29-1 1-.98 2.44.02 1.44 1.03 2.83 1.17 3.03.14.2 2.03 3.1 4.92 4.34.69.3 1.22.48 1.64.61.69.22 1.31.19 1.8.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.2-.55-.34Z" fill="currentColor"/>
+    <path d="M16.01 3.2c-6.98 0-12.65 5.67-12.65 12.65 0 2.23.58 4.41 1.68 6.33L3.2 28.8l6.79-1.78a12.59 12.59 0 0 0 6.02 1.53h.01c6.98 0 12.66-5.67 12.66-12.65S22.99 3.2 16.01 3.2Zm0 23.03h-.01a10.46 10.46 0 0 1-5.33-1.45l-.38-.22-4.03 1.06 1.08-3.93-.25-.4a10.38 10.38 0 0 1-1.6-5.49c0-5.76 4.68-10.45 10.44-10.45 2.79 0 5.41 1.09 7.38 3.06a10.36 10.36 0 0 1 3.05 7.39c0 5.76-4.69 10.43-10.45 10.43Z" fill="currentColor"/>
+  </svg>
+</a>
+
+<header class="site-header">
+  <div class="container nav-wrapper">
+    <div class="brand">
+  <img src="/images/logo.png" alt="Logo <%= settings.business_name %>" class="brand-logo" />
+  <div class="brand-text">
+    <strong><%= settings.business_name %></strong>
+    <small>Tapicería profesional</small>
+  </div>
+</div>
+    <nav class="nav-links">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#precios">Presupuestos</a>
+      <a href="#turnos">Turnos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Detalle artesanal · terminación premium</span>
+      <h1><%= settings.hero_title %></h1>
+      <p class="hero-copy"><%= settings.hero_subtitle %></p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#turnos">Solicitar turno</a>
+        <a class="btn btn-secondary" href="#precios">Ver presupuestos</a>
+        <a class="btn btn-ghost" href="#contacto">Contacto</a>
+      </div>
+      <div class="hero-badges">
+        <span>Restauración</span>
+        <span>Retapizados</span>
+        <span>Asesoramiento</span>
+      </div>
+    </div>
+    <div class="hero-panel glass-card">
+      <div class="hero-panel-art"></div>
+      <div class="hero-panel-content">
+        <h3>Calidad que se nota</h3>
+        <p>Cada pieza recibe atención personalizada, materiales seleccionados y terminaciones cuidadas para lograr un resultado elegante, durable y cómodo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-strip">
+  <div class="container stats-grid">
+    <article><strong>Atención personalizada</strong><span>Seguimiento en cada trabajo</span></article>
+    <article><strong>Presupuestos claros</strong><span>Valores orientativos visibles</span></article>
+    <article><strong>Turnos online</strong><span>Reserva simple y moderna</span></article>
+  </div>
+</section>
+
+<section id="nosotros" class="section">
+  <div class="container split-layout">
+    <div>
+      <span class="section-tag">Sobre nosotros</span>
+      <h2>Oficio, criterio estético y atención seria</h2>
+      <p><%= settings.about_text %></p>
+    </div>
+    <div class="info-card">
+      <h3>Qué nos diferencia</h3>
+      <ul class="feature-list">
+        <li>Asesoramiento según uso, estilo y presupuesto</li>
+        <li>Materiales pensados para duración y confort</li>
+        <li>Terminaciones prolijas y enfoque artesanal</li>
+        <li>Proceso ordenado, claro y profesional</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="servicios" class="section section-soft">
+  <div class="container">
+    <div class="section-heading">
+      <span class="section-tag">Servicios</span>
+      <h2>Soluciones integrales para renovar y realzar tus muebles</h2>
+    </div>
+    <div class="cards-grid">
+      <% services.forEach(service => { %>
+        <article class="service-card">
+          <div class="service-icon"><%= service.icon %></div>
+          <h3><%= service.title %></h3>
+          <p><%= service.description %></p>
+        </article>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container split-layout reverse">
+    <div class="info-card emphasis-card">
+      <span class="section-tag">Valor del buen tapizado</span>
+      <h2>Por qué una buena tapicería hace la diferencia</h2>
+      <p><%= settings.importance_text %></p>
+    </div>
+    <div class="benefits-grid">
+      <article><strong>Durabilidad</strong><span>Prolonga la vida útil del mueble.</span></article>
+      <article><strong>Confort</strong><span>Mejora apoyo, firmeza y comodidad.</span></article>
+      <article><strong>Estética</strong><span>Actualiza ambientes con identidad.</span></article>
+      <article><strong>Valor agregado</strong><span>Revaloriza piezas con uso diario.</span></article>
+    </div>
+  </div>
+</section>
+
+<section id="precios" class="section section-soft">
+  <div class="container">
+    <div class="section-heading between">
+      <div>
+        <span class="section-tag">Presupuestos</span>
+        <h2>Precios orientativos</h2>
+      </div>
+      <p class="section-note">Valores de referencia. El presupuesto final puede variar según medidas, materiales y complejidad del trabajo.</p>
+    </div>
+    <div class="table-card">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Servicio / Producto</th>
+            <th>Descripción</th>
+            <th>Precio orientativo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% pricing.forEach(item => { %>
+            <tr>
+              <td><strong><%= item.name %></strong></td>
+              <td><%= item.description %></td>
+              <td><span class="price-chip"><%= item.price %></span></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="turnos" class="section">
+  <div class="container split-layout">
+    <div>
+      <span class="section-tag">Turnos</span>
+      <h2>Reservá tu turno de forma simple</h2>
+      <p>Elegí una fecha, consultá horarios disponibles y enviá tu solicitud. Al confirmar, se abrirá WhatsApp automáticamente con todos los datos del turno listos para enviar.</p>
+      <div class="calendar-shell">
+        <div class="calendar-header">
+          <button id="prevMonth" class="calendar-nav">←</button>
+          <h3 id="calendarTitle">Calendario</h3>
+          <button id="nextMonth" class="calendar-nav">→</button>
+        </div>
+        <div class="calendar-weekdays">
+          <span>Dom</span><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span>
+        </div>
+        <div id="calendarGrid" class="calendar-grid"></div>
+      </div>
+    </div>
+
+    <div class="appointment-panel glass-card">
+      <div class="selected-date-box">
+        <small>Fecha seleccionada</small>
+        <strong id="selectedDateText">Elegí un día disponible</strong>
+      </div>
+      <div>
+        <label class="field-label">Horarios disponibles</label>
+        <div id="slotsContainer" class="slots-container">
+          <p class="muted">Seleccioná una fecha para ver horarios.</p>
+        </div>
+      </div>
+      <form id="appointmentForm" class="appointment-form">
+        <input type="hidden" id="appointmentDate" name="date" />
+        <input type="hidden" id="appointmentTime" name="time" />
+        <div class="form-row">
+          <label>Nombre
+            <input type="text" name="name" maxlength="80" required placeholder="Tu nombre" />
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Teléfono
+            <input type="tel" name="phone" maxlength="20" required placeholder="341..." />
+          </label>
+        </div>
+        <div class="form-row">
+          <label>Trabajo / consulta
+            <textarea name="notes" maxlength="300" rows="4" placeholder="Contanos qué querés tapizar o restaurar"></textarea>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Confirmar y abrir WhatsApp</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft">
+  <div class="container">
+    <div class="section-heading">
+      <span class="section-tag">Clientes satisfechos</span>
+      <h2>Reseñas reales y confianza en cada trabajo</h2>
+    </div>
+    <div class="cards-grid review-grid">
+      <% reviews.forEach(review => { %>
+        <article class="review-card">
+          <div class="stars"><%= '★'.repeat(review.rating) %><span><%= '☆'.repeat(5 - review.rating) %></span></div>
+          <p>“<%= review.comment %>”</p>
+          <strong><%= review.client_name %></strong>
+        </article>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ubicacion">
+  <div class="container split-layout">
+    <div class="info-card">
+      <span class="section-tag">Ubicación</span>
+      <h2>Visitá nuestro taller</h2>
+      <p><strong>Dirección:</strong> <%= settings.address %></p>
+      <p>Podés acercarte para asesorarte, ver opciones y coordinar tu trabajo con atención personalizada.</p>
+      <div class="hero-actions">
+        <a class="btn btn-secondary" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Las+Tardes+Norte+2524+Roldan">Abrir en Google Maps</a>
+        <a class="btn btn-ghost" href="https://wa.me/543413538035" target="_blank" rel="noreferrer">Consultar por WhatsApp</a>
+      </div>
+    </div>
+    <div class="map-card">
+      <iframe
+        title="Mapa Las Tardes"
+        src="https://www.google.com/maps?q=Las%20Tardes%20Norte%202524%20Roldan&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="section final-cta">
+  <div class="container final-cta-box">
+    <div>
+      <span class="section-tag">Contacto</span>
+      <h2>¿Querés renovar un mueble o pedir asesoramiento?</h2>
+      <p>Escribinos y coordinamos el mejor camino para tu proyecto.</p>
+    </div>
+    <div class="contact-stack">
+      <p><strong>Teléfono / WhatsApp:</strong> <a href="https://wa.me/543413538035" target="_blank" rel="noreferrer"><%= settings.phone %></a></p>
+      <p><strong>Dirección:</strong> <%= settings.address %></p>
+      <p><strong>Horario:</strong> <%= settings.hours %></p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://wa.me/543413538035" target="_blank" rel="noreferrer">Hablar por WhatsApp</a>
+        <a class="btn btn-secondary" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=Las+Tardes+Norte+2524+Roldan">Cómo llegar</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="site-footer-credit">
+  <div class="container">
+    <div class="site-credit">
+      <span>Hecho por</span>
+      <a href="https://www.serviciosmym.com.ar" target="_blank" rel="noopener noreferrer">
+        ServiciosMyM
+      </a>
+      <span>· Todos los derechos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<%- include('partials/footer', { toast, toastType }) %>

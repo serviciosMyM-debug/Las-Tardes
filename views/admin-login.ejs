@@ -1,0 +1,29 @@
+<%- include('partials/head', { title: 'Acceso administrador · Las Tardes', toast, toastType }) %>
+
+<section class="admin-login-page">
+  <div class="admin-login-card glass-card">
+    <div class="brand centered-brand">
+      <span class="brand-mark">LT</span>
+      <div>
+        <strong>Las Tardes</strong>
+        <small>Panel administrador</small>
+      </div>
+    </div>
+    <h1>Ingreso protegido</h1>
+    <p>Accedé al panel para administrar turnos, disponibilidad, reseñas y presupuestos.</p>
+    <form class="admin-login-form" method="post" action="/admin/login">
+      <label>Usuario
+        <input type="text" name="username" required placeholder="admin" />
+      </label>
+      <label>Contraseña
+        <input type="password" name="password" required placeholder="••••••••" />
+      </label>
+      <button class="btn btn-primary btn-block" type="submit">Ingresar</button>
+    </form>
+    <div class="login-helper">
+      <small>Usuario inicial: <strong>admin</strong> · Contraseña inicial: <strong>admin123</strong></small>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer', { toast, toastType }) %>
